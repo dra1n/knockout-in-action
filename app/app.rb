@@ -2,8 +2,10 @@ require 'sinatra'
 
 module KnockoutShowcase
   class App < Sinatra::Base
-    get "/products/:version" do
-      erb params[:version].to_sym
+    set :public_folder, 'public'
+
+    get "/products/:version/:framework" do
+      erb :"#{params[:version]}/#{params[:framework]}"
     end
   end
 end
