@@ -1,0 +1,28 @@
+h1, h2, h3, h4 {
+  font-weight: normal;
+}
+
+h1 {
+  margin: 50px 0;
+  font-size: 48px;
+  text-align: center;
+}
+
+.container {
+  padding: 40px 0;
+}
+
+.product {
+  margin-bottom: 20px;
+}
+
+.product input[type=text] {
+  margin-top: 42px;
+}
+
+.product .delete {
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  font-size: 20px;
+}
