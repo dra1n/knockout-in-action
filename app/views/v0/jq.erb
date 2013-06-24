@@ -1,3 +1,7 @@
+<% content_for :solution do %>
+  <script src="/js/jq.js"></script>
+<% end %>
+
 <div class="row product">
   <img class="span3" src="/images/consoles/xbox.png" alt="xbox">
   <div class="span5">
@@ -6,7 +10,9 @@
       Be first to experience Xbox One. The Day One Edition features a commemorative controller and an exclusive achievement.
     </p>
   </div>
-  <input name="product[ps]" type="text" class="span1" value="1" />
+
+  <div class="price span2">$499</div>
+  <input name="product[xbox]" type="text" class="span1" value="1" />
   <span class="delete fui-cross" />
 </div>
 
@@ -18,6 +24,8 @@
       The PlayStation®4 system redefines rich and immersive gameplay with powerful graphics and speed.
     </p>
   </div>
+
+  <div class="price span2">$399</div>
   <input name="product[ps]" type="text" class="span1" value="1" />
   <span class="delete fui-cross" />
 </div>
@@ -30,12 +38,18 @@
       It's the console that will singlehandedly change the way people play games for years to come.
     </p>
   </div>
+  <div class="price span2">$300</div>
   <input name="product[wii]" type="text" class="span1" value="1" />
   <span class="delete fui-cross" />
 </div>
 
-<div class="span9">
-  <div class="pull-right span2">
-    <a href="#" class="btn btn-large btn-block btn-primary">Checkout</a>
+<div class="row">
+  <div class="total span3">
+    Total: <span class="total-amount">$1198</span>
+  </div>
+  <div class="span8">
+    <div class="checkout pull-right span2">
+      <a href="#" class="btn btn-large btn-block btn-primary">Checkout</a>
+    </div>
   </div>
 </div>

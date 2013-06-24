@@ -21,8 +21,31 @@ h1 {
 }
 
 .product .delete {
+  cursor: pointer;
   padding: 10px;
+  font-size: 20px;
   position: relative;
   top: 20px;
-  font-size: 20px;
+}
+
+.product .price,
+.total {
+  text-align: center;
+  font-size: 32px;
+}
+
+.product .price {
+  margin-top: 42px;
+}
+
+.checkout {
+  margin-right: 20px;
+}
+
+.total {
+  color: #cccccc;
+}
+
+.total span {
+  color: #34495e;
 }
