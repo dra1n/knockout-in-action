@@ -8,6 +8,12 @@ h1 {
   text-align: center;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .container {
   padding: 40px 0;
 }
@@ -16,7 +22,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.product input[type=text] {
+.product input[type=number] {
   margin-top: 42px;
 }
 
