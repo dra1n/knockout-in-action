@@ -23,6 +23,9 @@
     }
   ]
 
+  var formatPrice = function(value) {
+    return '$' + value;
+  }
 
   function CheckoutViewModel(data) {
     var mapping = {
@@ -32,18 +35,32 @@
     }
 
     ko.mapping.fromJS({ products: data }, mapping, this);
+
+    this.total = ko.computed(function() {
+      var total = 0;
+
+      ko.utils.arrayForEach(this.products(), function(product) {
+        total += product.price;
+      });
+
+      return formatPrice(total);
+    }, this);
   }
 
 
   function ProductViewModel(data) {
-    ko.mapping.fromJS(data, {}, this);
+    var mapping = {
+      observe: ['quantity']
+    }
+
+    ko.mapping.fromJS(data, mapping, this);
 
     this.formattedPrice = ko.computed(function() {
-      return '$' + this.price();
+      return formatPrice(this.price)
     }, this);
   }
 
   $(function() {
     ko.applyBindings(new CheckoutViewModel(data));
-  })
+  });
 })();
