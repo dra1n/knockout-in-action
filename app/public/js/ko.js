@@ -55,8 +55,8 @@
 
     ko.mapping.fromJS(data, mapping, this);
 
-    this.formattedPrice = ko.computed(function() {
-      return formatPrice(this.price)
+    this.subtotal = ko.computed(function() {
+      return formatPrice(this.price * this.quantity());
     }, this);
   }
 
