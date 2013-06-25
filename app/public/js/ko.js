@@ -23,6 +23,7 @@
     }
   ]
 
+
   ko.extenders.formatMoney = function(target) {
     target.formatMoney = ko.computed(function() {
       return '$' + ko.utils.unwrapObservable(this);
@@ -31,14 +32,17 @@
     return target;
   };
 
-  function CheckoutViewModel(data) {
-    var self = this;
 
-    var mapping = {
+  function CheckoutViewModel(data) {
+    var self = this,
+
+    mapping = {
       products: {
-        create: function(options) { return new ProductViewModel(options.data); }
+        create: function(options) {
+          return new ProductViewModel(options.data);
+        }
       }
-    }
+    };
 
     ko.mapping.fromJS({ products: data }, mapping, self);
 
@@ -50,23 +54,26 @@
       });
 
       return total;
-    }, self).extend({ formatMoney: true });
+    }).extend({ formatMoney: true });
+
+    self.delete = function(product) {
+      self.products.remove(product);
+    }
   }
 
 
   function ProductViewModel(data) {
-    var self = this;
+    var self = this,
 
-    var mapping = {
-      observe: ['quantity']
-    }
+    mapping = { observe: ['quantity'] };
 
     ko.mapping.fromJS(data, mapping, self);
 
     self.subtotal = ko.computed(function() {
       return self.price * self.quantity();
-    }, self).extend({ formatMoney: true });
+    }).extend({ formatMoney: true });
   }
+
 
   $(function() {
     ko.applyBindings(new CheckoutViewModel(data));
