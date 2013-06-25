@@ -31,5 +31,7 @@
     ko.mapping.fromJS({ products: data }, {}, self);
   }
 
-  ko.applyBindings(new CheckoutViewModel(data));
+  $(function() {
+    ko.applyBindings(new CheckoutViewModel(data));
+  })
 })();

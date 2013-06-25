@@ -3,46 +3,19 @@
   <script src="/js/ko.js"></script>
 <% end %>
 
-<div class="row product">
-  <img class="span3" src="/images/consoles/xbox.png" alt="xbox">
-  <div class="span5">
-    <h3>Xbox One</h3>
-    <p>
-      Be first to experience Xbox One. The Day One Edition features a commemorative controller and an exclusive achievement.
-    </p>
+<!-- ko foreach: products -->
+  <div class="row product">
+    <img class="span3" data-bind="attr: { src: img, alt: title }" />
+    <div class="span5">
+      <h3 data-bind="text: title"></h3>
+      <p data-bind="text: description"></p>
+    </div>
+
+    <div class="price span2" data-bind="text: price"></div>
+    <input data-bind="value: quantity" type="text" class="span1" />
+    <span class="delete fui-cross" />
   </div>
-
-  <div class="price span2">$499</div>
-  <input name="product[xbox]" type="text" class="span1" value="1" />
-  <span class="delete fui-cross" />
-</div>
-
-<div class="row product">
-  <img class="span3" src="/images/consoles/ps.png" alt="ps">
-  <div class="span5">
-    <h3 class="tile-title">PlayStation®4</h3>
-    <p>
-      The PlayStation®4 system redefines rich and immersive gameplay with powerful graphics and speed.
-    </p>
-  </div>
-
-  <div class="price span2">$399</div>
-  <input name="product[ps]" type="text" class="span1" value="1" />
-  <span class="delete fui-cross" />
-</div>
-
-<div class="row product">
-  <img class="span3" src="/images/consoles/wii.png" alt="wii">
-  <div class="span5">
-    <h3 class="tile-title">Wii U</h3>
-    <p>
-      It's the console that will singlehandedly change the way people play games for years to come.
-    </p>
-  </div>
-  <div class="price span2">$300</div>
-  <input name="product[wii]" type="text" class="span1" value="1" />
-  <span class="delete fui-cross" />
-</div>
+<!-- /ko -->
 
 <div class="row">
   <div class="total span3">
