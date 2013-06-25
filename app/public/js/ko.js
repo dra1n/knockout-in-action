@@ -36,13 +36,11 @@
 
 
   function ProductViewModel(data) {
-    var self = this;
-
     ko.mapping.fromJS(data, {}, this);
 
     this.formattedPrice = ko.computed(function() {
-      return '$' + self.price();
-    });
+      return '$' + this.price();
+    }, this);
   }
 
   $(function() {
