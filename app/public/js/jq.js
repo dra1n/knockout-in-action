@@ -44,5 +44,18 @@ $(function() {
     calculateTotal.call(this, e);
   });
 
+  $('.checkout a').on('click', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      dataType: 'json',
+      data: $('form').serializeArray(),
+      type: 'post'
+    })
+    .success(function() {
+      alert('Thank you for your order');
+    });
+  });
+
   savePrices();
 })

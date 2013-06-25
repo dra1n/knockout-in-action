@@ -10,5 +10,9 @@ module KnockoutShowcase
     get "/products/:version/:framework" do
       erb :"#{params[:version]}/#{params[:framework]}"
     end
+
+    post "/products/:version/:framework" do
+      status 200
+    end
   end
 end

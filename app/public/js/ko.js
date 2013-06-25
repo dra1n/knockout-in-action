@@ -59,6 +59,19 @@
     self.delete = function(product) {
       self.products.remove(product);
     }
+
+    self.checkout = function() {
+      var mapping = { ignore: ['description', 'img', 'price'] };
+
+      $.ajax({
+        dataType: 'json',
+        data: ko.mapping.toJSON(self, mapping),
+        type: 'post'
+      })
+      .success(function() {
+        alert('Thank you for your order');
+      });
+    }
   }
 
 
