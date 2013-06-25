@@ -18,6 +18,8 @@
 * (Done) Сделать площадку для экспериментов (скорее всего небольшое приложение на sinatra или nodejs)
 
 ```
+gem install sinatra
+gem install sinatra-contrib
 cd app
 rackup config.ru
 ```
