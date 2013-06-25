@@ -11,7 +11,7 @@
       <p data-bind="text: description"></p>
     </div>
 
-    <div class="price span2" data-bind="text: subtotal"></div>
+    <div class="price span2" data-bind="text: subtotal.formatMoney"></div>
     <input data-bind="value: quantity" type="text" class="span1" />
     <span class="delete fui-cross" />
   </div>
@@ -19,7 +19,7 @@
 
 <div class="row">
   <div class="total span3">
-    Total: <span data-bind="text: total" class="total-amount"></span>
+    Total: <span data-bind="text: total.formatMoney" class="total-amount"></span>
   </div>
   <div class="span8">
     <div class="checkout pull-right span2">

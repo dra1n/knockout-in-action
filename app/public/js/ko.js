@@ -23,44 +23,53 @@
     }
   ]
 
-  var formatPrice = function(value) {
-    return '$' + value;
-  }
+  ko.extenders.formatMoney = function(target) {
+    target.formatMoney = ko.computed(function() {
+      return '$' + ko.utils.unwrapObservable(this);
+    }, target);
+
+    return target;
+  };
 
   function CheckoutViewModel(data) {
+    var self = this;
+
     var mapping = {
       products: {
         create: function(options) { return new ProductViewModel(options.data); }
       }
     }
 
-    ko.mapping.fromJS({ products: data }, mapping, this);
+    ko.mapping.fromJS({ products: data }, mapping, self);
 
-    this.total = ko.computed(function() {
+    self.total = ko.computed(function() {
       var total = 0;
 
-      ko.utils.arrayForEach(this.products(), function(product) {
-        total += product.price;
+      ko.utils.arrayForEach(self.products(), function(product) {
+        total += product.subtotal();
       });
 
-      return formatPrice(total);
-    }, this);
+      return total;
+    }, self).extend({ formatMoney: true });
   }
 
 
   function ProductViewModel(data) {
+    var self = this;
+
     var mapping = {
       observe: ['quantity']
     }
 
-    ko.mapping.fromJS(data, mapping, this);
+    ko.mapping.fromJS(data, mapping, self);
 
-    this.subtotal = ko.computed(function() {
-      return formatPrice(this.price * this.quantity());
-    }, this);
+    self.subtotal = ko.computed(function() {
+      return self.price * self.quantity();
+    }, self).extend({ formatMoney: true });
   }
 
   $(function() {
     ko.applyBindings(new CheckoutViewModel(data));
   });
+
 })();
