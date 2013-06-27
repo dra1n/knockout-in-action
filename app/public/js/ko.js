@@ -88,7 +88,10 @@
     }
 
     self.checkout = function() {
-      var mapping = { ignore: ['description', 'img', 'price'] };
+      var mapping = {
+        ignore: ['description', 'img', 'price', 'discount', 'isEnabled', 'isValid'],
+        include: 'promoCode'
+      };
 
       $.ajax({
         dataType: 'json',
