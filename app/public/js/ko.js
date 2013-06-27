@@ -26,7 +26,7 @@
 
   ko.extenders.formatMoney = function(target) {
     target.formatMoney = ko.computed(function() {
-      return '$' + ko.utils.unwrapObservable(this);
+      return '$' + ko.utils.unwrapObservable(this).toFixed(2);
     }, target);
 
     return target;
