@@ -32,6 +32,31 @@
     return target;
   };
 
+  ko.extenders.promo = function(target, promoCode) {
+    var result = ko.computed(function() {
+      var value = target();
+
+      return promoCode.isValid() ? value - value * promoCode.discount : value;
+    });
+
+    result.promoDiscount = ko.computed(function() {
+      return target() * promoCode.discount;
+    }).extend({ formatMoney: true });
+
+    return result;
+  };
+
+  function PromoCodeViewModel(secret, discount) {
+    var self = this;
+
+    self.discount = discount;
+    self.isEnabled = ko.observable(false);
+    self.value = ko.observable();
+    self.isValid = ko.computed(function() {
+      return self.value() === secret;
+    });
+  }
+
 
   function CheckoutViewModel(data) {
     var self = this,
@@ -41,10 +66,12 @@
         create: function(options) {
           return new ProductViewModel(options.data);
         }
-      }
+      },
     };
 
     ko.mapping.fromJS({ products: data }, mapping, self);
+
+    self.promoCode = new PromoCodeViewModel('anadea', 0.1);
 
     self.total = ko.computed(function() {
       var total = 0;
@@ -54,7 +81,7 @@
       });
 
       return total;
-    }).extend({ formatMoney: true });
+    }).extend({ promo: self.promoCode }).extend({ formatMoney: true });
 
     self.delete = function(product) {
       self.products.remove(product);
