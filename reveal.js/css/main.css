@@ -1,0 +1,37 @@
+.reveal section img {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+h1.knockout-logo {
+  text-indent: -9999px;
+  background: url(/images/ko-logo.png) no-repeat top center;
+}
+
+.white h2, .white h3, .white {
+  color: #ffffff;
+}
+
+.black h2, .black h3, .black {
+  color: #3f3f3f;
+}
+
+.pointer {
+  position: relative;
+  top: 33px;
+  display: inline-block;
+  width: 112px;
+  height: 150px;
+  vertical-align: top ! important;
+}
+
+.pointer.left {
+  left: 20px;
+  background: url(/images/pointer-left.png) no-repeat top center;
+}
+
+.pointer.right {
+  left: -20px;
+  background: url(/images/pointer-right.png) no-repeat top center;
+}
