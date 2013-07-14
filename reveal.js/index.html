@@ -131,7 +131,11 @@
         </section>
 
         <section>
-          <pre><code data-trim class="html-markup" style="font-size: 16px;">
+          <img src="/images/html-initial.png" alt="" />
+        </section>
+
+        <section>
+          <pre><code class="html-markup" style="font-size: 16px;">
   <div class="product">
     <img src="/images/consoles/xbox.png" alt="xbox">
     <div>
@@ -144,8 +148,8 @@
     </div>
 
     <div class="price">$499</div>
-    <input name="product[xbox]" type="text" value="1" />
-    <span class="delete" />
+    <input name="product[xbox]" type="text" value="1">
+    <span class="delete">
   </div>
 
   ...
@@ -156,10 +160,11 @@
     </div>
     <div>
       <div class="checkout">
-        <a href="#" class="btn">Checkout</a>
+        <a href="#">Checkout</a>
       </div>
     </div>
-  </div></code></pre>
+  </div>
+  </code></pre>
         </section>
 
 				<!-- Example of nested vertical slides -->
@@ -466,6 +471,7 @@ function linkify( selector ) {
 				progress: true,
 				history: true,
 				center: true,
+        rollingLinks: false,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
