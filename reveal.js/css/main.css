@@ -52,4 +52,7 @@ h1.knockout-logo {
     text-decoration: none;
   }
 
+.reveal pre code.html-markup {
+  max-height: none;
+}
 
