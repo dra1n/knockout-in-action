@@ -35,3 +35,21 @@ h1.knockout-logo {
   left: -20px;
   background: url(/images/pointer-right.png) no-repeat top center;
 }
+
+.reveal .slides section .fragment.strike {
+	opacity: 1;
+}
+  .reveal .slides section .fragment.strike span {
+    opacity: 0;
+  }
+
+	.reveal .slides section .fragment.strike.visible {
+    text-decoration: line-through;
+	}
+  .reveal .slides section .fragment.strike.visible span {
+    display: inline-block;
+    opacity: 1;
+    text-decoration: none;
+  }
+
+
