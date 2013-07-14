@@ -56,3 +56,10 @@ h1.knockout-logo {
   max-height: none;
 }
 
+.highlight {
+  background: #e2f88a;
+}
+
+.highlight * {
+  color: #000 ! important;
+}

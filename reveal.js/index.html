@@ -134,7 +134,7 @@
           <img src="/images/html-initial.png" alt="" />
         </section>
 
-        <section>
+        <section data-background="#0769ad">
           <pre><code class="html-markup" style="font-size: 16px;">
   <div class="product">
     <img src="/images/consoles/xbox.png" alt="xbox">
@@ -149,7 +149,7 @@
 
     <div class="price">$499</div>
     <input name="product[xbox]" type="text" value="1">
-    <span class="delete">
+    <span class="delete" />
   </div>
 
   ...
@@ -178,7 +178,37 @@
             </h3>
           </section>
           <section>
-            
+          <h3>html:</h3>
+            <pre><code data-noescape class="xml html-markup" style="font-size: 16px;">
+  &lt;!-- ko foreach: products --&gt;
+    &lt;div class="product"&gt;
+     <span class="highlight">&lt;img data-bind="attr: { src: img, alt: title }" /&gt;</span>
+      &lt;div&gt;
+        <span class="highlight">&lt;h3 data-bind="text: title"&gt;&lt;/h3&gt;</span>
+        <span class="highlight">&lt;p data-bind="text: description"&gt;&lt;/p&gt;</span>
+      &lt;/div&gt;
+
+      <span class="highlight">&lt;div class="price" data-bind="text: price"&gt;&lt;/div&gt;</span>
+      <span class="highlight">&lt;input data-bind="value: quantity" type="text" /&gt;</span>
+      &lt;span class="delete" /&gt;
+    &lt;/div&gt;
+  &lt;!-- /ko --&gt;
+
+  &lt;div&gt;
+    &lt;div class="total"&gt;
+      Total: &lt;span class="total-amount"&gt;$1198&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class="checkout"&gt;
+        &lt;a href="#" class="btn"&gt;Checkout&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  </code></pre>
+          </section>
+
+          <section>
+            <h3>javascript:</h3>
           </section>
         </section>
 
