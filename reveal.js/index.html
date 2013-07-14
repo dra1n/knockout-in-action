@@ -177,6 +177,34 @@
               way
             </h3>
           </section>
+
+          <section>
+            <h3>javascript:</h3>
+            <pre><code data-noescape class="javascript">
+  (function () {
+    var data = [
+      {
+        title: 'Xbox One',
+        description: 'Be first to experience Xbox One...',
+        price: '$499',
+        quantity: 1,
+        img: '/images/consoles/xbox.png'
+      },
+      ...
+    ]
+
+    function CheckoutViewModel(data) {
+      var self = this;
+      <span class="highlight">ko.mapping.fromJS({ products: data }, {}, self);</span>
+    }
+
+    $(function() {
+      <span class="highlight">ko.applyBindings(new CheckoutViewModel(data));</span>
+    })
+  })();
+            </code></pre>
+          </section>
+
           <section>
           <h3>html:</h3>
             <pre><code data-noescape class="xml html-markup" style="font-size: 16px;">
@@ -205,10 +233,6 @@
     &lt;/div&gt;
   &lt;/div&gt;
   </code></pre>
-          </section>
-
-          <section>
-            <h3>javascript:</h3>
           </section>
         </section>
 
