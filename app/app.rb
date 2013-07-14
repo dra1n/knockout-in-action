@@ -7,11 +7,11 @@ module KnockoutShowcase
 
     helpers Sinatra::ContentFor
 
-    get "/products/:version/:framework" do
-      erb :"#{params[:version]}/#{params[:framework]}"
+    get "/products/:framework" do
+      erb :"/#{params[:framework]}"
     end
 
-    post "/products/:version/:framework" do
+    post "/products/:framework" do
       status 200
     end
   end
