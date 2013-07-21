@@ -245,7 +245,70 @@
           </div>
         </section>
 
-        <section  data-background="#f49237">
+        <section data-background="#f49237">
+          <section>
+            <h3>The problem</h3>
+            <pre><code data-noescape>
+  var data = [
+    {
+      title: 'Xbox One',
+      description: 'Be first to experience Xbox One...',
+      <span class="highlight">price: '<span class="highlight red">$</span>499',</span>
+      quantity: 1,
+      img: '/images/consoles/xbox.png'
+    },
+    ...
+  ]
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Product ViewModel</h3>
+            <pre><code data-noescape>
+  function ProductViewModel(data) {
+    ko.mapping.fromJS(data, {}, this);
+
+    this.formattedPrice = ko.computed(function() {
+      return '$' + this.price();
+    }, this);
+  }
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Mapping FTW!</h3>
+            <pre><code data-noescape>
+  function CheckoutViewModel(data) {
+    var mapping = {
+      products: {
+        <span class="highlight">create: function(options) { return new ProductViewModel(options.data); }</span>
+      }
+    }
+
+    ko.mapping.fromJS({ products: data }, <span class="highlight">mapping</span>, this);
+  }
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>What's in the view?</h3>
+            <pre><code data-noescape class="xml html-markup" style="font-size: 16px;">
+  &lt;!-- ko foreach: products --&gt;
+    &lt;div class="product"&gt;
+     &lt;img data-bind="attr: { src: img, alt: title }" /&gt;
+      &lt;div&gt;
+        &lt;h3 data-bind="text: title"&gt;&lt;/h3&gt;
+        &lt;p data-bind="text: description"&gt;&lt;/p&gt;
+      &lt;/div&gt;
+
+      <span class="highlight">&lt;div class="price" data-bind="text: formattedPrice"&gt;&lt;/div&gt;</span>
+      &lt;input data-bind="value: quantity" type="text" /&gt;
+      &lt;span class="delete" /&gt;
+    &lt;/div&gt;
+  &lt;!-- /ko --&gt;
+  </code></pre>
+          </section>
+
         </section>
 
 				<!-- Example of nested vertical slides -->

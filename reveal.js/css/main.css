@@ -65,6 +65,10 @@ h1.knockout-logo {
   background: #e2f88a;
 }
 
+.highlight.red {
+  background: #ff4000;
+}
+
 .highlight, .highlight * {
   color: #000 ! important;
 }
