@@ -445,6 +445,91 @@
           </section>
         </section>
 
+        <section data-background="#f49237">
+          <section>
+            Add method to Product ViewModel
+            <pre><code data-noescape>
+    this.subtotal = ko.computed(function() {
+      return formatPrice(this.price * this.quantity());
+    }, this);
+            </code></pre>
+            Fix view
+            <pre><code data-noescape>
+    &lt;div class="subtotal" data-bind="text: subtotal"&gt;&lt;/div&gt;
+            </code></pre>
+            And use it when calculating total
+            <pre><code data-noescape>
+  this.total = ko.computed(function() {
+    var total = 0;
+    ko.utils.arrayForEach(this.products(), function(product) {
+      total += product.subtotal();
+    });
+    return total;
+  }, this)
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Easy, right?</h3>
+            <h3>But we always can do better</h3>
+          </section>
+
+          <section>
+            <h3>Introducing <b>Extenders</b></h3>
+            <pre><code data-noescape>
+  ko.extenders.formatMoney = function(target) {
+    target.formatMoney = ko.computed(function() {
+      <span class="highlight">return '$' + ko.utils.unwrapObservable(this);</span>
+    }, target);
+
+    return target;
+  };
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Seems cool</h3>
+            <h3>But how to use it?</h3>
+          </section>
+
+          <section>
+            <h3>Inside ViewModels</h3>
+            <pre><code data-noescape>
+  function ProductViewModel(data) {
+    ...
+    this.subtotal = ko.computed(function() {
+      return this.price * this.quantity();
+    }, this)<span class="highlight">.extend({ formatMoney: true });</span>
+  }
+
+  function CheckoutViewModel(data) {
+    ...
+    this.total = ko.computed(function() {
+      var total = 0;
+      ko.utils.arrayForEach(this.products(), function(product) {
+        total += product.subtotal();
+      });
+      return total;
+    }, this)<span class="highlight">.extend({ formatMoney: true });</span>
+  }
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Inside Views</h3>
+            <pre><code data-noescape>
+  &lt;div class="total"&gt;
+    Total: &lt;span <span class="highlight">data-bind="text: total.formatMoney"</span> class="total-amount"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  ...
+
+  &lt;div <span class="highlight">data-bind="text: subtotal.formatMoney"</span> class="subtotal"&gt;&lt;/div&gt;
+            </code></pre>
+          </section>
+
+        </section>
+
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
