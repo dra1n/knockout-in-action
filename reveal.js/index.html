@@ -151,9 +151,7 @@
     <input name="product[xbox]" type="text" value="1">
     <span class="delete" />
   </div>
-
   ...
-
   <div>
     <div class="total">
       Total: <span class="total-amount">$1198</span>
@@ -309,6 +307,75 @@
   </code></pre>
           </section>
 
+        </section>
+
+        <section data-background="#f49237">
+          <section>
+            <h3>The problem</h3>
+            <h2>Total is still static</h2>
+            <h3>Let's fix this</h3>
+          </section>
+
+          <section>
+            <h3>Little helper</h3>
+            <pre><code data-noescape>
+  var formatPrice = function(value) {
+    return '$' + value;
+  }
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Meet and Greet Computed, again</h3>
+            <pre><code data-noescape>
+  function CheckoutViewModel(data) {
+    ...
+
+    this.total = ko.computed(function() {
+      var total = 0;
+
+      ko.utils.arrayForEach(this.products(), function(product) {
+        total += product.price * product.quantity();
+      });
+
+      return formatPrice(total);
+    }, this);
+  }
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>What's in the view?</h3>
+            <pre><code data-noescape class="xml html-markup" style="font-size: 16px;">
+  &lt;div&gt;
+    &lt;div class="total"&gt;
+      <span class="highlight">Total: &lt;span data-bind="text: total" class="total-amount"&gt;&lt;/span&gt;</span>
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class="checkout"&gt;
+        &lt;a href="#" class="btn"&gt;Checkout&lt;/a&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Product ViewModel Revised</h3>
+            <pre><code data-noescape>
+   function ProductViewModel(data) {
+     var mapping = {
+       <span class="highlight">observe: ['quantity']</span>
+     }
+
+     ko.mapping.fromJS(data, mapping, this);
+
+     this.formattedPrice = ko.computed(function() {
+       <span class="highlight">return formatPrice(this.price)</span>
+     }, this);
+   }
+            </code></pre>
+          </section>
         </section>
 
 				<!-- Example of nested vertical slides -->
