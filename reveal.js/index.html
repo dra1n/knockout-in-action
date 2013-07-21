@@ -378,6 +378,73 @@
           </section>
         </section>
 
+        <section>
+          <h2>OMG! OMG! OMG!</h2>
+          <h2>Specs changed!!!</h2>
+        </section>
+
+        <section data-background="#0769ad">
+          <section>
+            <h2>Do it fast with jQuery</h2>
+          </section>
+
+          <section>
+            <h2>A place for my stuff</h2>
+            <br />
+            <blockquote>
+              Have you noticed that their stuff is shit and your shit is stuff?
+              <br />
+              <div style="text-align: right"><b>George Carlin</b></div>
+            </blockquote>
+          </section>
+
+          <section>
+            <h3>Put my stuff in data attributes</h3>
+            <pre><code data-noescape>
+  var clearFormat = function(price) {
+    return parseFloat(price.replace(/[^0-9-.]/g, ''));
+  },
+
+  formatMoney = function(price) {
+    return '$' + price;
+  },
+
+  storePrices = function() {
+    $('.price').each(function() {
+      <span class="highlight">$(this).next('input').data('price', clearFormat($(this).text()));</span>
+    });
+  };
+            </code></pre>
+          </section>
+
+          <section>
+            <h3>Use stored price to calculate subtotal</h3>
+            <pre><code data-noescape>
+  var calculateSubtotal = function(e) {
+    var product = e.originalEvent.currentTarget,
+        price = $('.price', product),
+        <span class="highlight">subtotal = formatMoney($(this).data('price') * parseInt($(this).val()));</span>
+
+    price.html(subtotal);
+  },
+
+  calculateTotal = function() {
+    var total = 0;
+    $('input').each(function() {
+      var $this = $(this);
+      <span class="highlight">total += $this.data('price') * parseInt($this.val());</span>
+    });
+    $('.total-amount').text(formatMoney(total));
+  },
+
+  $('.product').on('change', 'input', function(e) {
+    calculateSubtotal.call(this, e);
+    calculateTotal.call(this, e);
+  });
+            </code></pre>
+          </section>
+        </section>
+
 				<!-- Example of nested vertical slides -->
 				<section>
 					<section>
