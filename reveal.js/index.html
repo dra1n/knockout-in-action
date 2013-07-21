@@ -208,7 +208,7 @@
             <pre><code data-noescape class="xml html-markup" style="font-size: 16px;">
   &lt;!-- ko foreach: products --&gt;
     &lt;div class="product"&gt;
-     <span class="highlight">&lt;img data-bind="attr: { src: img, alt: title }" /&gt;</span>
+      <span class="highlight">&lt;img data-bind="attr: { src: img, alt: title }" /&gt;</span>
       &lt;div&gt;
         <span class="highlight">&lt;h3 data-bind="text: title"&gt;&lt;/h3&gt;</span>
         <span class="highlight">&lt;p data-bind="text: description"&gt;&lt;/p&gt;</span>
@@ -326,7 +326,7 @@
           </section>
 
           <section>
-            <h3>Meet and Greet Computed, again</h3>
+            <h3>Meet and Greet <b>Computed</b>, again</h3>
             <pre><code data-noescape>
   function CheckoutViewModel(data) {
     ...
@@ -527,7 +527,38 @@
   &lt;div <span class="highlight">data-bind="text: subtotal.formatMoney"</span> class="subtotal"&gt;&lt;/div&gt;
             </code></pre>
           </section>
+        </section>
 
+        <section>
+          <h3>Everyone likes <b>destroying</b> things</h3>
+          <h3>Let us allow one to do this</h3>
+        </section>
+
+        <section data-background="#0769ad">
+          <h3>Easy peasy ...</h3>
+          <pre><code data-noescape>
+  $('.product').on('click', '.delete', function(e) {
+    e.preventDefault();
+    $(e.originalEvent.currentTarget).remove();
+    calculateTotal.call(this, e);
+  });
+          </code></pre>
+        </section>
+
+        <section data-background="#f49237">
+          <h3>... Lemon Squeezy</h3>
+          <pre><code data-noescape>
+  function CheckoutViewModel(data) {
+    ...
+    this.delete = function(product) {
+      this.products.remove(product);
+    }
+  }
+          </code></pre>
+
+          <pre><code>
+  <a href="#" data-bind="click: $parent.delete" class="delete"></a>
+          </code></pre>
         </section>
 
 				<!-- Example of nested vertical slides -->
