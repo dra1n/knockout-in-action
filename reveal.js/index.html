@@ -318,7 +318,7 @@
           <section>
             <h3>Little helper</h3>
             <pre><code data-noescape>
-  var formatPrice = function(value) {
+  var formatMoney = function(value) {
     return '$' + value;
   }
             </code></pre>
@@ -337,7 +337,7 @@
         total += product.price * product.quantity();
       });
 
-      return formatPrice(total);
+      return formatMoney(total);
     }, this);
   }
             </code></pre>
@@ -370,7 +370,7 @@
      ko.mapping.fromJS(data, mapping, this);
 
      this.formattedPrice = ko.computed(function() {
-       <span class="highlight">return formatPrice(this.price)</span>
+       <span class="highlight">return formatMoney(this.price)</span>
      }, this);
    }
             </code></pre>
@@ -449,7 +449,7 @@
             Add method to Product ViewModel
             <pre><code data-noescape>
     this.subtotal = ko.computed(function() {
-      return formatPrice(this.price * this.quantity());
+      return formatMoney(this.price * this.quantity());
     }, this);
             </code></pre>
             Fix view
