@@ -35,13 +35,13 @@ $(function() {
 
   $('.product').on('change', 'input', function(e) {
     calculateSubtotal.call(this, e);
-    calculateTotal.call(this, e);
+    calculateTotal();
   });
 
   $('.product').on('click', '.delete', function(e) {
     e.preventDefault();
     $(e.originalEvent.currentTarget).remove();
-    calculateTotal.call(this, e);
+    calculateTotal();
   });
 
   $('.checkout a').on('click', function(e) {
@@ -49,7 +49,7 @@ $(function() {
 
     $.ajax({
       dataType: 'json',
-      data: $('form').serializeArray(),
+      data: JSON.stringify($('form').serializeArray()),
       type: 'post'
     })
     .success(function() {

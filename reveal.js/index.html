@@ -540,7 +540,7 @@
   $('.product').on('click', '.delete', function(e) {
     e.preventDefault();
     $(e.originalEvent.currentTarget).remove();
-    calculateTotal.call(this, e);
+    calculateTotal();
   });
           </code></pre>
         </section>
@@ -559,6 +559,65 @@
           <pre><code>
   <a href="#" data-bind="click: $parent.delete" class="delete"></a>
           </code></pre>
+        </section>
+
+        <section>
+          <h3>Sending data to server</h3>
+        </section>
+
+        <section data-background="#f49237">
+          <h3>Good ol' jQuery</h3>
+          <h3><b>Wait! What?</b></h3>
+
+          <pre><code data-noescape>
+  function CheckoutViewModel(data) {
+    ...
+    this.checkout = function() {
+      <span class="highlight">var mapping = { ignore: ['description', 'img', 'price'] };</span>
+
+      $.ajax({
+        dataType: 'json',
+        <span class="highlight">data: ko.mapping.toJSON(self, mapping),</span>
+        type: 'post'
+      })
+      .success(function() {
+        alert('Thank you for your order');
+      });
+    }
+  }
+          </code></pre>
+
+          <code><pre>
+  <a data-bind="click: checkout" href="#" class="btn">Checkout</a></code></pre>
+        </section>
+
+        <section data-background="#0769ad">
+          <h3>It is everywhere</h3>
+          <pre><code data-noescape>
+  $('.checkout a').on('click', function(e) {
+    e.preventDefault();
+
+    $.ajax({
+      dataType: 'json',
+      data: JSON.stringify($('form').serializeArray()),
+      type: 'post'
+    })
+    .success(function() {
+      alert('Thank you for your order');
+    });
+  });
+          </code></pre>
+        </section>
+
+        <section data-background="#f49237">
+          <h3>What else?</h3>
+					<ul>
+            <li>Control flow data bindings (foreach, if, ifnot)</li>
+						<li>Template binding</li>
+						<li>Custom bindings</li>
+						<li>Writable computed fields</li>
+						<li>Manual subscriptions</li>
+					</ul>
         </section>
 
 				<!-- Example of nested vertical slides -->
