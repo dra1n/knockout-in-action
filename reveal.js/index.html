@@ -192,8 +192,7 @@
     ]
 
     function CheckoutViewModel(data) {
-      var self = this;
-      <span class="highlight">ko.mapping.fromJS({ products: data }, {}, self);</span>
+      <span class="highlight">ko.mapping.fromJS({ products: data }, {}, this);</span>
     }
 
     $(function() {
